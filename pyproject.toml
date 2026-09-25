@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lppe-supplement"
+version = "0.1.0"
+description = "LPPE models and paper experiments"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic==2.12.4",
+  "PyYAML==6.0.3",
+  "numpy==2.5.1",
+  "scipy==1.18.0",
+  "torch==2.13.0",
+  "torch-geometric==2.8.0",
+  "tqdm==4.67.1",
+  "matplotlib==3.11.1",
+  "networkx==3.6.1",
+  "huggingface_hub>=0.30,<2",
+]
+
+[project.optional-dependencies]
+repro = [
+  "scikit-learn==1.9.0",
+  "pandas==3.0.3",
+]
+test = [
+  "pytest==9.1.1",
+]
+
+[project.scripts]
+gfm-config = "zero_shot_gfm.cli.config:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+pythonpath = ["src"]
